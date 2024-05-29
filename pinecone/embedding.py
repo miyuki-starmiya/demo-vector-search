@@ -4,11 +4,11 @@ from openai import OpenAI
 
 
 class Embedding:
-    def __init__(self):
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-    def get_embeddings(self, texts: List[str]) -> List[List[float]]:
-        res = self.client.embeddings.create(
+    @classmethod
+    def get_embeddings(cls, texts: List[str]) -> List[List[float]]:
+        res = cls.client.embeddings.create(
             input=texts,
             model="text-embedding-3-small"
         )
